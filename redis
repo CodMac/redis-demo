@@ -1,0 +1,102 @@
+5大基本类型
+string, set, list, hash, zset
+3大特殊类型
+geo
+-----------------------
+Key（键）
+    DEL 删除
+    EXISTS 是否存在
+    EXPIRE 设置过期 - s
+    PEXPIRE 设置过期 - ms
+    EXPIREAT 设置过期 - UNIX 时间戳(unix timestamp) - s
+    PEXPIREAT 设置过期 - UNIX 时间戳(unix timestamp) - ms
+    TTL 查看剩余生存时间s
+    PTTL 查看剩余生存时间ms
+    PERSIST 移除过期时间
+    KEYS 查看keys
+    MIGRATE 将key从实例间迁移
+    MOVE 将key从分片中迁移
+    OBJECT
+    RANDOMKEY 从当前数据库随机返回一个key
+    RENAME 重命名(当 newkey 已经存在时， RENAME 命令将覆盖旧值。)
+    RENAMENX 重命名(当 newkey 不存在时， 才成功)
+    DUMP 序列化
+    RESTORE 反序列化
+    SORT
+    TYPE 返回 key 所储存的值的类型
+    SCAN
+
+---------------------
+List（列表）
+
+    LPOP 左出（key）
+    LPUSH 左进（key values)
+    LPUSHX 左进,key不存在不操作
+    RPOP 右出（key）
+    RPUSH 右进（key values)
+    RPUSHX 右进,key不存在不操作
+    RPOPLPUSH a右出=b左进 (a b)
+    LINDEX 返回对应下标的元素（key index）
+    LLEN 返回长度（key）
+    LRANGE 返回区间内的元素（key start stop）
+    LREM 移除元素（key count value）
+    LSET 赋值对应下标的元素 （key index value）
+    LTRIM 截取保留区间内的元素（key start stop）
+    LINSERT 插入value到pivot相等值的前/后面 （key BEFORE|AFTER pivot value）
+    BLPOP 阻塞地左出（keys timeout）
+    BRPOP 阻塞地右出（keys timeout）
+    BRPOPLPUSH
+-----------------------
+Set（集合）
+    SADD 往set中添加member (key member)
+    SCARD 返回元素数量 (key)
+    SDIFF 返回集合间的差集（key1 key2）
+    SDIFFSTORE 返回集合间的元素差值并保存到key1中 （key1 key2）
+    SINTER 返回集合间的交集（key1 key2）
+    SINTERSTORE 返回集合间的交集并保存到key1中（key1 key2）
+    SUNION 返回并集（keys）
+    SUNIONSTORE 返回并集并保存到key1（key1 key2  ...）
+    SISMEMBER 判断元素是否存在于集合中（key value）
+    SMEMBERS 返回集合内的元素（key）
+    SMOVE 将元素从key1移到key2 （key1 key2 value）
+    SPOP 随机弹出一个元素（key）
+    SRANDMEMBER 随机弹出n个元素（key [count]）
+    SREM 移除集合中的元素 （key value）
+    SSCAN
+---------------------
+Hash（哈希表）
+    HDEL 删除（key field [field ...]）
+    HEXISTS 是否存在（key field）
+    HGET 返回hash表指定值（key field）
+    HGETALL 返回hash表所有的值（key）
+    HINCRBY hash表的值加上增量increment（key field increment）
+    HINCRBYFLOAT
+    HKEYS 返回hash表所有的keys（key）
+    HLEN 返回hash表长度（key）
+    HMGET 同时获取hash表内的多个field （ key field [field ...]）
+    HMSET 同时设置多个field（key field value [field value ...]）
+    HSET hash表新增field （key field）
+    HSETNX hash表新增field，hash表不存在则新增hash表（key field）
+    HVALS 返回hash表内所有的值（key）
+    HSCAN
+---------------------
+ZSet（有序集合）
+    ZADD 为zset添加元素（key score member [[score member] [score member] ...]）
+    ZCARD 统计zset的所有元素数量
+    ZCOUNT 统计zset的指定分数区间内元素数量
+    ZINCRBY 为zset的元素的score+（key increment member）
+    ZRANGE 返回指定区间内的元素（key start stop）
+    ZRANGEBYSCORE 返回指定score区间内的元素（key min max）
+    ZRANK 返回元素在有序set中的排名（key member)
+    ZREM 移除zset中的元素（key member）
+    ZREMRANGEBYRANK 移除zset中，指定排名(rank)区间内的所有成员（key start stop）
+    ZREMRANGEBYSCORE 移除zset中，指定score区间内的元素（key min max）
+    ZREVRANGE 返回指定区间内的元素（key start stop）反序排列
+    ZREVRANGEBYSCORE 返回指定score区间内的元素（key min max）反序排列
+    ZREVRANK 返回zset中指定元素的排名（key member）
+    ZSCORE 返回zset中指定元素的评分（key member）
+    ZUNIONSTORE 计算给定的一个或多个有序集的并集，其中给定 key 的数量必须以 numkeys 参数指定，并将该并集(结果集)储存到 destination 。
+                默认情况下，结果集中某个成员的 score 值是所有给定集下该成员 score 值之 和 。
+    ZINTERSTORE destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX] 计算给定的一个或多个有序集的交集，其中给定 key 的数量必须以 numkeys 参数指定，并将该交集(结果集)储存到 destination 。
+                默认情况下，结果集中某个成员的 score 值是所有给定集下该成员 score 值之和.
+    ZSCAN
